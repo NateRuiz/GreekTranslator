@@ -53,6 +53,7 @@ function parseText(text) {
         var re = /{[^>]*}|(\w+)|[-]|[[]/g;
         currentString = currentString.replace(re, '');
         $('#bible').append('<p><strong>' + verse  + '</strong> ' + currentString + '</p>');
+
       }
     }
   }
