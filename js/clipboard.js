@@ -15,10 +15,10 @@ function addLink() {
     });
 
     var selection = window.getSelection(),
-        pagelink = '<br /><br />  ' + document.location.href,
+        pagelink = '<br /><br />  This shit works' + document.location.href,
         copytext = selection + pagelink,
         newdiv = document.createElement('div');
-    var range = selection.getRange(0);
+    var range = selection.getRangeAt(0);
 
     //hide the newly created container
     newdiv.style.position = 'absolute';
