@@ -1,24 +1,28 @@
 var bookName = [];
-var bibleText = {};
+var bibleText;
 var chapters = [];
-var verses = [];
 $.ajax({
   type: 'GET',
   url: '../files/Ephesians.json',
   success: function(text) {
-    for (var key in text) {
-      bookName.push(key);
-        for(var chapter in key) {
+    for (var book in text) {
+      bookName.push(book);
+        for(var chapter in text[book]) {
           var currentChapter = {};
+          console.log(chapter);
           currentChapter.chapter = [];
-            for (var verse in chapter){
+            for (var verse in text[book][chapter]){
               currentChapter.chapter.push(verse);
             }
             chapters.push(currentChapter);
         }
     }
     bibleText = text;
-    document.title = bookName[0]; 
+    parseText(bibleText);
+    document.title = bookName[0];
+    document.getElementById('book').innerHTML = bookName[0];
+    loadChapters();
+    loadVerses();
   }
 });
 
@@ -36,4 +40,14 @@ function strongMapping(text) {
     var currentStrong = letter.strongs;
     strongMap.currentStrong = letter;
   });
+}
+
+function parseText(text) {
+  for(book in text){
+    for(chapter in text[book]){
+      for(verse in text[book][chapter]){
+        console.log(verse);
+      }
+    }
+  }
 }
