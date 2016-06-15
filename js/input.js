@@ -86,11 +86,11 @@ function getSelectedText() {
 function doSomethingWithSelectedText() {
     var selectedText = getSelectedText();
     if (selectedText) {
-		strongNumber = selectedText.anchorNode.parentElement.id;
+		var strongNumber = selectedText.anchorNode.parentElement.id;
 		var greek = document.getElementById(strongNumber);
 		var english = strongMap[strongMap];
 		if (english != 'undefined') {
-			translatedtext.innerHTML = '<p id="' + " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>'
+			console.log('<p id="' + " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>')
 		}
 
 		console.log(selectedText.anchorNode.parentElement.id)
