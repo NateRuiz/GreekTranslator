@@ -16,10 +16,6 @@ $.ajax({
         chapters.push(currentChapter);
       }
     }
-<<<<<<< HEAD
-=======
-    //console.log(chapters);
->>>>>>> 27a55098619bb7799e445175b58b9be2147b1f31
 
     bibleText = text;
     parseText(bibleText);
@@ -29,7 +25,7 @@ $.ajax({
     loadVerses();
 	document.onmouseup = doSomethingWithSelectedText;
 	document.keyup =  doSomethingWithSelectedText;
-	
+
   }
 });
 
@@ -52,11 +48,7 @@ function strongMapping(text) {
 function parseText(text) {
   for (book in text) {
     for (chapter in text[book]) {
-<<<<<<< HEAD
-      $('#bible').append('<h4> Chapter' + chapter + '</h4>');
-=======
       $('#bible').append('<h4> Chapter ' + chapter + '</h4>');
->>>>>>> 27a55098619bb7799e445175b58b9be2147b1f31
       for (verse in text[book][chapter]) {
         var currentString = text[book][chapter][verse];
         currentString = currentString.replace(/{[^>]*}/g, "");
@@ -75,19 +67,11 @@ function parseText(text) {
         }
         $('#bible').append('<p id="' +
           " " + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
-
-<<<<<<< HEAD
-=======
-        console.log(finalString);
->>>>>>> 27a55098619bb7799e445175b58b9be2147b1f31
       }
     }
   }
 
 }
-
-
-
 
 function getSelectedText() {
     var text = "";
@@ -102,24 +86,13 @@ function getSelectedText() {
 function doSomethingWithSelectedText() {
     var selectedText = getSelectedText();
     if (selectedText) {
+		strongNumber = selectedText.anchorNode.parentElement.id;
+		var greek = document.getElementById(strongNumber);
+		var english = strongMap[strongMap];
+		if (english != 'undefined') {
+			translatedtext.innerHTML = '<p id="' + " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>'
+		}
+
 		console.log(selectedText.anchorNode.parentElement.id)
-    }
-}
-
-
-function getSelectedText() {
-    var text = "";
-    if (typeof window.getSelection != "undefined") {
-        text = window.getSelection().toString();
-    } else if (typeof document.selection != "undefined" && document.selection.type == "Text") {
-        text = document.selection.createRange().text;
-    }
-    return text;
-}
-
-function doSomethingWithSelectedText() {
-    var selectedText = getSelectedText();
-    if (selectedText) {
-		console.log(selectedText.id)
     }
 }

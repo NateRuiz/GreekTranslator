@@ -7,7 +7,3 @@ function clipBoard(){
       return selectedText
   }
 }
-var newWindow = window.open("");
-var body = newWindow.document.body;
-var text = "innerText" in body ? "innerText" : "textContent";
-body[text] = "YOUR STRING GOES HERE";
