@@ -16,7 +16,6 @@ $.ajax({
         chapters.push(currentChapter);
       }
     }
-    //console.log(chapters);
 
     bibleText = text;
     parseText(bibleText);
@@ -66,7 +65,6 @@ function parseText(text) {
         $('#bible').append('<p id="' +
           " " + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
 
-        console.log(finalString);
       }
     }
   }
