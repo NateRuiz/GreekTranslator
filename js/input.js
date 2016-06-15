@@ -7,16 +7,16 @@ $.ajax({
   success: function(text) {
     for (var book in text) {
       bookName.push(book);
-        for(var chapter in text[book]) {
-          var currentChapter = {};
-          currentChapter.chapter = [];
-            for (var verse in text[book][chapter]){
-              currentChapter.chapter.push(verse);
-            }
-            chapters.push(currentChapter);
+      for (var chapter in text[book]) {
+        var currentChapter = {};
+        currentChapter.chapter = [];
+        for (var verse in text[book][chapter]) {
+          currentChapter.chapter.push(verse);
         }
+        chapters.push(currentChapter);
+      }
     }
-    console.log(chapters);
+    //console.log(chapters);
 
     bibleText = text;
     parseText(bibleText);
@@ -39,27 +39,34 @@ var strongMap = {};
 function strongMapping(text) {
   text.forEach(function(letter) {
     var currentStrong = letter.strongs;
-    strongMap.currentStrong = letter;
+    strongMap[currentStrong] = letter;
   });
 }
 
 function parseText(text) {
-  for(book in text){
-    for(chapter in text[book]){
+  for (book in text) {
+    for (chapter in text[book]) {
       $('#bible').append('<h4> Chapter' + chapter + '</h4>');
-      for(verse in text[book][chapter]){
+      for (verse in text[book][chapter]) {
         var currentString = text[book][chapter][verse];
-        currentString = currentString.replace(/{[^>]*}|[A-z]+|[-]|[[]|[\]]/g, "")
+        currentString = currentString.replace(/{[^>]*}/g, "");
+        currentString = currentString.replace(/[A-z]+|[-]|[[]|[\]]/g, "")
+        currentString = currentString.replace(/  /g, " ")
         var stringArray = currentString.split(" ");
-        console.log(currentString);
-        /*
-        for(var i = 0; i < stringArray.length; i++) {
-          var re = /{[^>]*}|(\w+)|[-]|[[]|[\]]/g;
-          stringArray[i] = stringArray[i].replace(re,"");
+        for (var i = 0; i < stringArray.length; i++) {
+          if (i % 2 == 0 && !isNaN(stringArray[i])) {
+            stringArray.splice(i, 1);
+            i = 0;
+          }
         }
-        */
-        //currentString = currentString.replace(re, '');
-        $('#bible').append('<p id="' + " " + chapter + ":" + verse+ '"><strong>' + verse  + '</strong> ' + currentString + '</p>');
+        var finalString = "";
+        for (var i = 0; i < stringArray.length; i += 2) {
+          finalString += "<span id='" + stringArray[i + 1] + "'>" + stringArray[i] + " </span>";
+        }
+        $('#bible').append('<p id="' +
+          " " + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+
+        console.log(finalString);
       }
     }
   }
