@@ -48,7 +48,6 @@ function strongMapping(text) {
 function parseText(text) {
   for (book in text) {
     for (chapter in text[book]) {
-      $('#bible').append('<h4> Chapter' + chapter + '</h4>');
       $('#bible').append('<h4> Chapter ' + chapter + '</h4>');
       for (verse in text[book][chapter]) {
         var currentString = text[book][chapter][verse];
