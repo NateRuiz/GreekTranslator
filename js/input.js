@@ -16,6 +16,7 @@ $.ajax({
         chapters.push(currentChapter);
       }
     }
+    //console.log(chapters);
 
     bibleText = text;
     parseText(bibleText);
@@ -23,6 +24,9 @@ $.ajax({
     document.getElementById('book').innerHTML = bookName[0];
     loadChapters();
     loadVerses();
+	document.onmouseup = doSomethingWithSelectedText;
+	document.keyup =  doSomethingWithSelectedText;
+	
   }
 });
 
@@ -65,16 +69,20 @@ function parseText(text) {
         $('#bible').append('<p id="' +
           " " + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
 
+        console.log(finalString);
       }
     }
   }
+
 }
+
+
 
 
 function getSelectedText() {
     var text = "";
     if (typeof window.getSelection != "undefined") {
-        text = window.getSelection().toString();
+        text = window.getSelection()
     } else if (typeof document.selection != "undefined" && document.selection.type == "Text") {
         text = document.selection.createRange().text;
     }
@@ -84,6 +92,6 @@ function getSelectedText() {
 function doSomethingWithSelectedText() {
     var selectedText = getSelectedText();
     if (selectedText) {
-		console.log(selectedText.id)
+		console.log(selectedText.anchorNode.parentElement.id)
     }
 }
