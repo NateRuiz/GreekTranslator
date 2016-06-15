@@ -16,6 +16,8 @@ $.ajax({
             chapters.push(currentChapter);
         }
     }
+    console.log(chapters);
+
     bibleText = text;
     parseText(bibleText);
     document.title = bookName[0];
@@ -44,7 +46,15 @@ function strongMapping(text) {
 function parseText(text) {
   for(book in text){
     for(chapter in text[book]){
+      $('#bible').append('<h4> Chapter' + chapter + '</h4>');
       for(verse in text[book][chapter]){
+<<<<<<< HEAD
+=======
+        var currentString = text[book][chapter][verse];
+        var re = /{[^>]*}|(\w+)|[-]|[[]/g;
+        currentString = currentString.replace(re, '');
+        $('#bible').append('<p><strong>' + verse  + '</strong> ' + currentString + '</p>');
+>>>>>>> ihoegen/master
       }
     }
   }
