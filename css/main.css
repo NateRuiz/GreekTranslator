@@ -1,0 +1,20 @@
+.nav {
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  color:white;
+
+}
+.body {
+  padding-top: 75px;
+}
+#chapter, #verse {
+  padding-top: 15px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .body {
+    padding-top: 200px;
+  }
+}
