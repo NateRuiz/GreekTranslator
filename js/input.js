@@ -48,11 +48,18 @@ function parseText(text) {
     for(chapter in text[book]){
       $('#bible').append('<h4> Chapter' + chapter + '</h4>');
       for(verse in text[book][chapter]){
-
         var currentString = text[book][chapter][verse];
-        var re = /{[^>]*}|(\w+)|[-]|[[]|[\]]/g;
-        currentString = currentString.replace(re, '');
-        $('#bible').append('<p><strong>' + verse  + '</strong> ' + currentString + '</p>');
+        currentString = currentString.replace(/{[^>]*}|[A-z]+|[-]|[[]|[\]]/g, "")
+        var stringArray = currentString.split(" ");
+        console.log(currentString);
+        /*
+        for(var i = 0; i < stringArray.length; i++) {
+          var re = /{[^>]*}|(\w+)|[-]|[[]|[\]]/g;
+          stringArray[i] = stringArray[i].replace(re,"");
+        }
+        */
+        //currentString = currentString.replace(re, '');
+        $('#bible').append('<p id="' + " " + chapter + ":" + verse+ '"><strong>' + verse  + '</strong> ' + currentString + '</p>');
       }
     }
   }
