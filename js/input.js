@@ -48,13 +48,11 @@ function parseText(text) {
     for(chapter in text[book]){
       $('#bible').append('<h4> Chapter' + chapter + '</h4>');
       for(verse in text[book][chapter]){
-<<<<<<< HEAD
-=======
+
         var currentString = text[book][chapter][verse];
         var re = /{[^>]*}|(\w+)|[-]|[[]/g;
         currentString = currentString.replace(re, '');
         $('#bible').append('<p><strong>' + verse  + '</strong> ' + currentString + '</p>');
->>>>>>> ihoegen/master
       }
     }
   }
