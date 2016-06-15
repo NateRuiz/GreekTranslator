@@ -9,7 +9,6 @@ $.ajax({
       bookName.push(book);
         for(var chapter in text[book]) {
           var currentChapter = {};
-          console.log(chapter);
           currentChapter.chapter = [];
             for (var verse in text[book][chapter]){
               currentChapter.chapter.push(verse);
@@ -46,7 +45,6 @@ function parseText(text) {
   for(book in text){
     for(chapter in text[book]){
       for(verse in text[book][chapter]){
-        console.log(verse);
       }
     }
   }

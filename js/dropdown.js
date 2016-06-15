@@ -4,7 +4,6 @@ function loadChapters() {
   var chapterList = document.createElement("select");
   chapterList.id = 'chapter-dropdown'
   chapterList.className = "form-control";
-  chapterList.onchange= verseCount();
   chapter.appendChild(chapterList);
   //Create and append the options
   for (var i = 1; i <= chapters.length; i++) {
@@ -13,15 +12,21 @@ function loadChapters() {
     option.text = "Chapter " + i;
     chapterList.appendChild(option);
   }
-}
-
-function loadVerses() {
+  chapterList.onchange = verseCount;
   var verse = document.getElementById("verse");
   var verseList = document.createElement("select");
   verseList.className = "form-control"
   verse.appendChild(verseList);
+  verseList.id="verseList";
+  verseCount();
+}
+
+
+function loadVerses(total) {
+  var verse = document.getElementById("verse");
+  var verseList = document.getElementById("verseList");
   //Create and append the options
-  for (var i = 1; i <= chapters.length; i++) {
+  for (var i = 1; i <= total; i++) {
     var option = document.createElement("option");
     option.value = "Verse " + i;
     option.text = "Verse " + i;
@@ -31,7 +36,12 @@ function loadVerses() {
 }
 function verseCount(){
   var selected = document.getElementById("chapter-dropdown").value;
-  console.log(chapters[-1].chapter.length);
+   var total=(chapters[selected-1].chapter.length);
+   var verseList = document.getElementById("verseList");
+   while(verseList.firstChild!=null){
+   verseList.removeChild(verseList.firstChild);
+ }
+   loadVerses(total);
 
 
 }
