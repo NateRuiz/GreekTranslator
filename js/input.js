@@ -74,9 +74,6 @@ function parseText(text) {
 
 }
 
-
-
-
 function getSelectedText() {
     var text = "";
     if (typeof window.getSelection != "undefined") {
@@ -90,22 +87,13 @@ function getSelectedText() {
 function doSomethingWithSelectedText() {
     var selectedText = getSelectedText();
     if (selectedText) {
-    }
-}
+		strongNumber = selectedText.anchorNode.parentElement.id;
+		var greek = document.getElementById(strongNumber);
+		var english = strongMap[strongMap];
+		if (english != 'undefined') {
+			translatedtext.innerHTML = '<p id="' + " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>'
+		}
 
-
-function getSelectedText() {
-    var text = "";
-    if (typeof window.getSelection != "undefined") {
-        text = window.getSelection().toString();
-    } else if (typeof document.selection != "undefined" && document.selection.type == "Text") {
-        text = document.selection.createRange().text;
-    }
-    return text;
-}
-
-function doSomethingWithSelectedText() {
-    var selectedText = getSelectedText();
-    if (selectedText) {
+		console.log(selectedText.anchorNode.parentElement.id)
     }
 }
