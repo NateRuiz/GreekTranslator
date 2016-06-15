@@ -49,7 +49,7 @@ function parseText(text) {
       $('#bible').append('<h4> Chapter' + chapter + '</h4>');
       for(verse in text[book][chapter]){
         var currentString = text[book][chapter][verse];
-        var re = /{[^>]*}|(\w+)|[-]|[[]/g;
+        var re = /{[^>]*}|(\w+)|[-]|[[]|[\]]/g;
         currentString = currentString.replace(re, '');
         $('#bible').append('<p><strong>' + verse  + '</strong> ' + currentString + '</p>');
       }
