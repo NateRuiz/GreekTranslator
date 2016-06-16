@@ -48,7 +48,7 @@ function goButton() {
   var chosenVerse = document.getElementById("verseList").value;
   var total = 'p' + selected + ":" + chosenVerse;
   var el = document.getElementById(total);
-  $(el).scrollTo($(".nav"),800);
+  $(el).scrollTo($(".nav"), 800);
 
 }
 

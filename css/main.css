@@ -4,7 +4,7 @@
   width: 100%;
   z-index: 1000;
   color: white;
-  top:0;
+  top: 0;
 }
 .body {
   margin-top: 85px;
@@ -15,16 +15,13 @@
 #chapter, #verse {
   padding-top: 15px;
 }
-
 .greekword {
-	position:fixed;
-	font-size: 40px;
+  position: fixed;
+  font-size: 40px;
 }
-
 #partsofspeech, #definition {
   font-size: 20px;
 }
-
 @media only screen and (max-width: 1000px) {
   .body {
     padding-top: 225px;
