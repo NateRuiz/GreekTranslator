@@ -55,6 +55,7 @@ function parseText(text) {
         currentString = currentString.replace(/[A-z]+|[-]|[[]|[\]]/g, "")
         currentString = currentString.replace(/  /g, " ")
         var stringArray = currentString.split(" ");
+        var morphologyArray = morphologyArrayGen(text[book][chapter][verse]);
         for (var i = 0; i < stringArray.length; i++) {
           if (i % 2 == 0 && !isNaN(stringArray[i])) {
             stringArray.splice(i, 1);
@@ -63,7 +64,7 @@ function parseText(text) {
         }
         var finalString = "";
         for (var i = 0; i < stringArray.length; i += 2) {
-          finalString += "<span id='" + stringArray[i + 1] + "'>" + stringArray[i] + " </span>";
+          finalString += "<span id='" + stringArray[i + 1] + "' morphology='" + morphologyArray[i / 2] + "'>" + stringArray[i] + " </span>";
         }
         $('#bible').append('<p id="p' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
@@ -89,6 +90,7 @@ function doSomethingWithSelectedText() {
   if (selectedText) {
     try {
       var strongNumber = selectedText.anchorNode.parentElement.id;
+      var morphology = document.getElementById(strongNumber).getAttribute("morphology"); //morphology is here
       english = strongMap[strongNumber].brief;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
@@ -100,4 +102,17 @@ function doSomethingWithSelectedText() {
       document.getElementById("partsofspeech").innerHTML = '';
     }
   }
+}
+function morphologyArrayGen(currentString) {
+  var input = currentString.replace(/{[^>]*}/g, "");
+  input = input.replace(/[[]|[\]]/g, "");
+  input = input.replace(/[^\u0000-\u007F]+/g, "");
+  input = input.replace(/G[\d]{0,6}/g, "");
+  var dirtyArray = input.split(" ");
+  for (var i = dirtyArray.length - 1; i >= 0; i--) {
+    if (dirtyArray[i] == "") {
+      dirtyArray.splice(i, 1);
+    }
+  }
+  return dirtyArray;
 }
