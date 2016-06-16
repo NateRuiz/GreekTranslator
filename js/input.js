@@ -13,7 +13,8 @@ $.ajax({
         for (var verse in text[book][chapter]) {
           currentChapter.chapter.push(verse);
         }
-        chapters.push(currentChapter);
+        chapters.push(currentChapter); // this gets the files of the book
+        //ephesians in greek?
       }
     }
 
@@ -26,7 +27,7 @@ $.ajax({
     document.onmouseup = doSomethingWithSelectedText;
     document.keyup = doSomethingWithSelectedText;
 
-  }
+  }// pareses data?
 });
 
 $.ajax({
@@ -34,7 +35,7 @@ $.ajax({
   url: '../files/lexicon-eph-english.json',
   success: function(text) {
     strongMapping(text);
-  }
+  }// retrives files of definitions from the lexicon?
 });
 var strongMap = {};
 
@@ -66,7 +67,7 @@ function parseText(text) {
         for (var i = 0; i < stringArray.length; i += 2) {
           finalString += "<span id='" + stringArray[i + 1] + "' morphology='" + morphologyArray[i / 2] + "'>" + stringArray[i] + " </span>";
         }
-        $('#bible').append('<p id="p' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+        $('#bible').append('<p id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
     }
   }
@@ -87,7 +88,8 @@ function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-  if (selectedText) {
+  console.log(selectedText);
+  if (selectedText.focusNode.parentNode.localName=="span") {
     try {
       var strongNumber = selectedText.anchorNode.parentElement.id;
       var morphology = document.getElementById(strongNumber).getAttribute("morphology"); //morphology is here
