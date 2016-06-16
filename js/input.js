@@ -104,7 +104,7 @@ function doSomethingWithSelectedText() {
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
 	  var englishWords = english.split(", ");
 	   var list = document.getElementById('listOfSpeech');
-	   list.innerHTML = "";
+	   list.innerHTML = "Definition:";
 	  for (var el in englishWords) {
 		var word = englishWords[el];
 		var entry = document.createElement('li');
