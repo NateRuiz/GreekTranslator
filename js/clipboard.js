@@ -63,7 +63,6 @@ function parseHTML(input) {
   finalResult = finalResult.replace(/[a-zA-Z]|=|"|>/g, "");
   var finalArray = finalResult.split(" ");
   finalArray.splice(0, 1);
-  console.log(finalArray);
   return finalArray;
 }
 document.addEventListener('copy', addLink);

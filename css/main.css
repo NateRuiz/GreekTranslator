@@ -3,8 +3,7 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
-  color:white;
-
+  color: white;
 }
 .body {
   padding-top: 75px;
@@ -21,21 +20,29 @@
 	font-size: 40px;
 }
 
-#definition {
-	font-size: 20px;
-}
 
+#greekword {
+  position: fixed;
+  padding-top: 82px;
+  font-size: 40px;
+}
+#definition {
+
+	font-size: 20px;
+  position: fixed;
+  padding-top: 165px;
+  font-size: 20px;
+}
 #partsofspeech {
 	font-size: 20px;
 }
-
 
 
 @media only screen and (max-width: 1000px) {
   .body {
     padding-top: 225px;
   }
-  .btn{
+  .btn {
     margin-top: 0;
   }
 }

@@ -83,20 +83,23 @@ function getSelectedText() {
 }
 
 function doSomethingWithSelectedText() {
-    var selectedText = getSelectedText();
-	var greek;
-	var english;
-    if (selectedText) {
-		var strongNumber = selectedText.anchorNode.parentElement.id;
-		try {
-				english = strongMap[strongNumber].brief;
-				greekk = strongMap[strongNumber].greek;
-				document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
-				document.getElementById("definition").innerHTML = 'Defintion: ' + english;
-				document.getElementById("partsofspeech").innerHTML = 'Noun';
-				}
-		catch(err) {
-			console.log(selectedText.class)
-		}
+
+  var selectedText = getSelectedText();
+  var greek;
+  var english;
+  console.log(selectedText);
+  if (selectedText) {
+    var strongNumber = selectedText.anchorNode.parentElement.id;
+    try {
+      english = strongMap[strongNumber].brief;
+      greekk = strongMap[strongNumber].greek;
+      document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
+      document.getElementById("definition").innerHTML = 'Defintion: ' + english;
+      document.getElementById("partsofspeech").innerHTML = 'Noun';
+    } catch (err) {
+      document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
+      document.getElementById("definition").innerHTML = 'Definition not found';
+      document.getElementById("partsofspeech").innerHTML = '';
     }
+  }
 }
