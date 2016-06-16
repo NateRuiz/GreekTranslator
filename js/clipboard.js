@@ -61,7 +61,7 @@ function parseHTML(input) {
   }
   var finalResult = inputSplit.join("");
   finalResult = finalResult.replace(/[a-zA-Z]|=|"|>/g, "");
-  var finalArray = finalResult.split("  ");
+  var finalArray = finalResult.split(" ");
   finalArray.splice(0, 1);
   return finalArray;
 }
