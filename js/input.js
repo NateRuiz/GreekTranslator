@@ -112,8 +112,9 @@ function doSomethingWithSelectedText() {
 		list.appendChild(entry);
 	}
 
-	document.getElementById("partsofspeech").innerHTML = morphology;
-
+	document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+  document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/'+morphology);
+console.log("help");
     } catch (err) {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
       document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
