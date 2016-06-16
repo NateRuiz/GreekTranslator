@@ -88,7 +88,6 @@ function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-  console.log(selectedText);
   if (selectedText.focusNode.parentNode.localName=="span") {
     try {
       var strongNumber = selectedText.anchorNode.parentElement.id;

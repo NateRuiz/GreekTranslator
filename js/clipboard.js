@@ -5,8 +5,11 @@ function addLink() {
     newdiv = document.createElement('div');
   var range = selection.getRangeAt(0);
   var paragraphId = selection.anchorNode;
-  var htmlString = getHTMLOfSelection();
-
+  var htmlString = getHTMLOfSelection() + "";
+  var stringTest = /<p[^>]+?id="([^A-z"]+)".*/g.test(htmlString);
+  if(!stringTest) {
+    return "";
+  }
   var verses = parseHTML(htmlString);
   var verseToDisplay;
   if (verses.length == 1) {
