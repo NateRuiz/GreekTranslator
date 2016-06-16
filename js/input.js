@@ -84,6 +84,7 @@ function getSelectedText() {
 
 function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
+  try {
   if (selectedText) {
     var strongNumber = selectedText.anchorNode.parentElement.id;
     var greek = document.getElementById(strongNumber);
@@ -95,4 +96,7 @@ function doSomethingWithSelectedText() {
 
     console.log(selectedText.anchorNode.parentElement.id)
   }
+} catch(theError) {
+  console.log(theError);
+}
 }
