@@ -50,5 +50,3 @@ function goButton(){
     var chosenVerse = document.getElementById("verse-dropdown").value;
    var total= selected+":"+chosenVerse;
 }
-
-}
