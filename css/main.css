@@ -9,6 +9,9 @@
 .body {
   padding-top: 75px;
 }
+.btn {
+  margin-top: 15px;
+}
 #chapter, #verse {
   padding-top: 15px;
 }
