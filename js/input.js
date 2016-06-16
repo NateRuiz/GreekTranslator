@@ -83,16 +83,19 @@ function getSelectedText() {
 }
 
 function doSomethingWithSelectedText() {
-  var selectedText = getSelectedText();
-  if (selectedText) {
-    var strongNumber = selectedText.anchorNode.parentElement.id;
-    var greek = document.getElementById(strongNumber);
-    var english = strongMap[strongMap];
-    if (english != 'undefined') {
-      console.log('<p id="' +
-        " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>')
+    var selectedText = getSelectedText();
+	var greek;
+	var english;
+    if (selectedText) {
+		var strongNumber = selectedText.anchorNode.parentElement.id;
+		try {
+				english = strongMap[strongNumber].brief;
+				greekk = strongMap[strongNumber].greek;
+				document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
+				document.getElementById("definition").innerHTML = 'Defintion: ' + english;
+				document.getElementById("partsofspeech").innerHTML = 'Noun';
+				}
+		catch(err) {
+		}
     }
-
-    console.log(selectedText.anchorNode.parentElement.id)
-  }
 }
