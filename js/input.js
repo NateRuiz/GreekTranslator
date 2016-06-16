@@ -95,11 +95,11 @@ function doSomethingWithSelectedText() {
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
       document.getElementById("definition").innerHTML = 'Defintion: ' + english;
-      document.getElementById("partsofspeech").innerHTML = 'Noun';
     } catch (err) {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
       document.getElementById("definition").innerHTML = 'Definition not found';
-      document.getElementById("partsofspeech").innerHTML = '';
+    } finally {
+      document.getElementById("partsofspeech").innerHTML = morphology;
     }
   }
 }
