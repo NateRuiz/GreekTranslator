@@ -17,10 +17,9 @@ function loadChapters() {
   var verseList = document.createElement("select");
   verseList.className = "form-control"
   verse.appendChild(verseList);
-  verseList.id="verseList";
+  verseList.id = "verseList";
   verseCount();
 }
-
 
 function loadVerses(total) {
   var verse = document.getElementById("verse");
@@ -34,27 +33,26 @@ function loadVerses(total) {
 
   }
 }
-function verseCount(){
+function verseCount() {
   var selected = document.getElementById("chapter-dropdown").value;
-   var total=(chapters[selected-1].chapter.length);
-   var verseList = document.getElementById("verseList");
-   while(verseList.firstChild!=null){
-   verseList.removeChild(verseList.firstChild);
- }
-   loadVerses(total);
-
-
-}
-function goButton(){
-    var selected = document.getElementById("chapter-dropdown").value;
-    var chosenVerse = document.getElementById("verseList").value;
-   var total= selected+":"+chosenVerse;
-   var el = document.getElementById(total);
-      el.scrollIntoView(true);// allows the user to scroll up and down the
-      //screen
+  var total = (chapters[selected - 1].chapter.length);
+  var verseList = document.getElementById("verseList");
+  while (verseList.firstChild != null) {
+    verseList.removeChild(verseList.firstChild);
+  }
+  loadVerses(total);
 
 }
+function goButton() {
+  var selected = document.getElementById("chapter-dropdown").value;
+  var chosenVerse = document.getElementById("verseList").value;
+  var total = selected + ":" + chosenVerse;
+  var el = document.getElementById(total);
+  el.scrollIntoView(true); // allows the user to scroll up and down the
+  //screen
 
-$('#goButton').click(function(){
-    goButton();
+}
+
+$('#goButton').click(function() {
+  goButton();
 });
