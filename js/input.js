@@ -65,7 +65,7 @@ function parseText(text) {
         for (var i = 0; i < stringArray.length; i += 2) {
           finalString += "<span id='" + stringArray[i + 1] + "'>" + stringArray[i] + " </span>";
         }
-        $('#bible').append('<p id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+        $('#bible').append('<p id="p' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
     }
   }
@@ -86,10 +86,9 @@ function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-  console.log(selectedText);
   if (selectedText) {
-    var strongNumber = selectedText.anchorNode.parentElement.id;
     try {
+      var strongNumber = selectedText.anchorNode.parentElement.id;
       english = strongMap[strongNumber].brief;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
@@ -99,8 +98,6 @@ function doSomethingWithSelectedText() {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
       document.getElementById("definition").innerHTML = 'Definition not found';
       document.getElementById("partsofspeech").innerHTML = '';
-
-
     }
   }
 }

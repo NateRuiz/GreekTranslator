@@ -52,11 +52,11 @@ function verseCount() {
 function goButton() {
   var selected = document.getElementById("chapter-dropdown").value;
   var chosenVerse = document.getElementById("verseList").value;
-  var total = selected + ":" + chosenVerse;
-  var el = document.getElementById(total);
-  el.scrollIntoView(true); // allows the user to scroll up and down the
-  //screen
-
+  var total = 'p' + selected + ":" + chosenVerse;
+  var heightOfNav = $(".nav").height();
+  console.log(heightOfNav);
+  var rect = document.getElementById(total).offsetTop;
+  scrollTo(0, rect);
 }
 
 $('#goButton').click(function() {
