@@ -99,4 +99,20 @@ function doSomethingWithSelectedText() {
 } catch(theError) {
   console.log(theError);
 }
+
+    var selectedText = getSelectedText();
+	var greek;
+	var english;
+    if (selectedText) {
+		var strongNumber = selectedText.anchorNode.parentElement.id;
+		try {
+				english = strongMap[strongNumber].brief;
+				greekk = strongMap[strongNumber].greek;
+				document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
+				document.getElementById("definition").innerHTML = 'Defintion: ' + english;
+				document.getElementById("partsofspeech").innerHTML = 'Noun';
+				}
+		catch(err) {
+		}
+    }
 }
