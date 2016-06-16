@@ -13,8 +13,7 @@ $.ajax({
         for (var verse in text[book][chapter]) {
           currentChapter.chapter.push(verse);
         }
-        chapters.push(currentChapter); // this gets the files of the book
-        //ephesians in greek?
+        chapters.push(currentChapter);
       }
     }
 
@@ -27,7 +26,7 @@ $.ajax({
     document.onmouseup = doSomethingWithSelectedText;
     document.keyup = doSomethingWithSelectedText;
 
-  }// pareses data?
+  }
 });
 
 $.ajax({
@@ -35,7 +34,8 @@ $.ajax({
   url: '../files/lexicon-eph-english.json',
   success: function(text) {
     strongMapping(text);
-  }// retrives files of definitions from the lexicon?
+  }
+// retrives files of definitions from the lexicon?
 });
 var strongMap = {};
 
@@ -84,26 +84,48 @@ function getSelectedText() {
   return text;
 }
 
+/*
+<li> </li>
+<li> </li>
+
+*/
+
+
 function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
+<<<<<<< HEAD
   if (selectedText.focusNode.parentNode.localName=="span") {
+=======
+  if (selectedText) {
+    var strongNumber = selectedText.anchorNode.parentElement.id;
+	var morphology = document.getElementById(strongNumber).getAttribute("morphology");
+>>>>>>> 49fd4e2175f2955bad9b4dbd590f07d2de391b0c
     try {
-      var strongNumber = selectedText.anchorNode.parentElement.id;
-      var morphology = document.getElementById(strongNumber).getAttribute("morphology"); //morphology is here
       english = strongMap[strongNumber].brief;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
-      document.getElementById("definition").innerHTML = 'Defintion: ' + english;
+	  var englishWords = english.split(", ");
+	   var list = document.getElementById('listOfSpeech');
+	   list.innerHTML = "";
+	  for (var el in englishWords) {
+		var word = englishWords[el];
+		var entry = document.createElement('li');
+		entry.appendChild(document.createTextNode(word));
+		list.appendChild(entry);
+	}
+	
+	document.getElementById("partsofspeech").innerHTML = morphology;
+	  
     } catch (err) {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
-      document.getElementById("definition").innerHTML = 'Definition not found';
-    } finally {
-      document.getElementById("partsofspeech").innerHTML = morphology;
+      document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
     }
   }
 }
+
+
 function morphologyArrayGen(currentString) {
   var input = currentString.replace(/{[^>]*}/g, "");
   input = input.replace(/[[]|[\]]/g, "");

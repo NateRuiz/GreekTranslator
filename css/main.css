@@ -19,8 +19,10 @@
   position: fixed;
   font-size: 40px;
 }
-#partsofspeech, #definition {
+#definition, #listOfSpeech, #partsofspeech {
   font-size: 20px;
+  text-align:left;
+  
 }
 @media only screen and (max-width: 1000px) {
   .body {
@@ -29,4 +31,8 @@
   .btn {
     margin-top: 0;
   }
+}
+
+ol.capitalize {
+	text-transform: capitalize;
 }
