@@ -101,7 +101,8 @@ function doSomethingWithSelectedText() {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
       document.getElementById("definition").innerHTML = 'Definition not found';
     } finally {
-      document.getElementById("partsofspeech").innerHTML = morphology;
+      document.getElementById("partsofspeech").innerHTML = '<a href="' + morphology"" + </a>
+
     }
   }
 }
