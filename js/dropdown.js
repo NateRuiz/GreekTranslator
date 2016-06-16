@@ -45,3 +45,8 @@ function verseCount(){
 
 
 }
+function goButton(){
+    var selected = document.getElementById("chapter-dropdown").value;
+    var chosenVerse = document.getElementById("verse-dropdown").value;
+   var total= selected+":"+chosenVerse;
+}

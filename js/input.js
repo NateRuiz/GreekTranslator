@@ -23,8 +23,8 @@ $.ajax({
     document.getElementById('book').innerHTML = bookName[0];
     loadChapters();
     loadVerses();
-	document.onmouseup = doSomethingWithSelectedText;
-	document.keyup =  doSomethingWithSelectedText;
+    document.onmouseup = doSomethingWithSelectedText;
+    document.keyup = doSomethingWithSelectedText;
 
   }
 });
@@ -65,8 +65,7 @@ function parseText(text) {
         for (var i = 0; i < stringArray.length; i += 2) {
           finalString += "<span id='" + stringArray[i + 1] + "'>" + stringArray[i] + " </span>";
         }
-        $('#bible').append('<p id="' +
-          " " + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+        $('#bible').append('<p id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
     }
   }
@@ -74,25 +73,26 @@ function parseText(text) {
 }
 
 function getSelectedText() {
-    var text = "";
-    if (typeof window.getSelection != "undefined") {
-        text = window.getSelection()
-    } else if (typeof document.selection != "undefined" && document.selection.type == "Text") {
-        text = document.selection.createRange().text;
-    }
-    return text;
+  var text = "";
+  if (typeof window.getSelection != "undefined") {
+    text = window.getSelection()
+  } else if (typeof document.selection != "undefined" && document.selection.type == "Text") {
+    text = document.selection.createRange().text;
+  }
+  return text;
 }
 
 function doSomethingWithSelectedText() {
-    var selectedText = getSelectedText();
-    if (selectedText) {
-		var strongNumber = selectedText.anchorNode.parentElement.id;
-		var greek = document.getElementById(strongNumber);
-		var english = strongMap[strongMap];
-		if (english != 'undefined') {
-			console.log('<p id="' + " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>')
-		}
-
-		console.log(selectedText.anchorNode.parentElement.id)
+  var selectedText = getSelectedText();
+  if (selectedText) {
+    var strongNumber = selectedText.anchorNode.parentElement.id;
+    var greek = document.getElementById(strongNumber);
+    var english = strongMap[strongMap];
+    if (english != 'undefined') {
+      console.log('<p id="' +
+        " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>')
     }
+
+    console.log(selectedText.anchorNode.parentElement.id)
+  }
 }
