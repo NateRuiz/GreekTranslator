@@ -28,7 +28,7 @@ function loadVerses(total) {
   //Create and append the options
   for (var i = 1; i <= total; i++) {
     var option = document.createElement("option");
-    option.value = "Verse " + i;
+    option.value = i;
     option.text = "Verse " + i;
     verseList.appendChild(option);
 
@@ -47,6 +47,14 @@ function verseCount(){
 }
 function goButton(){
     var selected = document.getElementById("chapter-dropdown").value;
-    var chosenVerse = document.getElementById("verse-dropdown").value;
+    var chosenVerse = document.getElementById("verseList").value;
    var total= selected+":"+chosenVerse;
+   var el = document.getElementById(total);
+      el.scrollIntoView(true);// allows the user to scroll up and down the
+      //screen
+
 }
+
+$('#goButton').click(function(){
+    goButton();
+});
