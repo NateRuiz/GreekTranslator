@@ -22,15 +22,9 @@
 
 
 #greekword {
-  position: fixed;
-  padding-top: 82px;
   font-size: 40px;
 }
 #definition {
-
-	font-size: 20px;
-  position: fixed;
-  padding-top: 165px;
   font-size: 20px;
 }
 #partsofspeech {
