@@ -86,7 +86,6 @@ function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-  console.log(selectedText);
   if (selectedText) {
     var strongNumber = selectedText.anchorNode.parentElement.id;
     try {
@@ -99,8 +98,6 @@ function doSomethingWithSelectedText() {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
       document.getElementById("definition").innerHTML = 'Definition not found';
       document.getElementById("partsofspeech").innerHTML = '';
-
-
     }
   }
 }
