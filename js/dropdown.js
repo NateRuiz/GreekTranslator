@@ -5,12 +5,16 @@ function loadChapters() {
   chapterList.id = 'chapter-dropdown'
   chapterList.className = "form-control";
   chapter.appendChild(chapterList);
+  // finds the values of the chapter and
+  // verses by their ID
   //Create and append the options
   for (var i = 1; i <= chapters.length; i++) {
     var option = document.createElement("option");
     option.value = i;
     option.text = "Chapter " + i;
     chapterList.appendChild(option);
+    // This makes it so when the user clicks on a chapter the correct number of
+    // verses match up.
   }
   chapterList.onchange = verseCount;
   var verse = document.getElementById("verse");
@@ -19,7 +23,8 @@ function loadChapters() {
   verse.appendChild(verseList);
   verseList.id = "verseList";
   verseCount();
-}
+} // this counts the number of verses and sees the change in the drop down box
+// when the user clicks on a new value
 
 function loadVerses(total) {
   var verse = document.getElementById("verse");
@@ -29,7 +34,7 @@ function loadVerses(total) {
     var option = document.createElement("option");
     option.value = i;
     option.text = "Verse " + i;
-    verseList.appendChild(option);
+    verseList.appendChild(option);// shows the different options of the verses
 
   }
 }
@@ -38,7 +43,8 @@ function verseCount() {
   var total = (chapters[selected - 1].chapter.length);
   var verseList = document.getElementById("verseList");
   while (verseList.firstChild != null) {
-    verseList.removeChild(verseList.firstChild);
+    verseList.removeChild(verseList.firstChild); // when the user switches
+    //chapter using the drop box the correct verses are displayed with out issue
   }
   loadVerses(total);
 
