@@ -91,7 +91,7 @@ function doSomethingWithSelectedText() {
     var strongNumber = selectedText.anchorNode.parentElement.id;
     try {
       english = strongMap[strongNumber].brief;
-      greekk = strongMap[strongNumber].greek;
+      greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
       document.getElementById("definition").innerHTML = 'Defintion: ' + english;
       document.getElementById("partsofspeech").innerHTML = 'Noun';
