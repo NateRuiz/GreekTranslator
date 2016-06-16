@@ -88,7 +88,7 @@ function doSomethingWithSelectedText() {
   var greek;
   var english;
   console.log(selectedText);
-  if (selectedText) {
+  if (selectedText.focusNode.parentNode.localName=="span") {
     var strongNumber = selectedText.anchorNode.parentElement.id;
     try {
       english = strongMap[strongNumber].brief;
