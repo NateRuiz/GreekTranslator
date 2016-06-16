@@ -96,6 +96,7 @@ function doSomethingWithSelectedText() {
 				document.getElementById("partsofspeech").innerHTML = 'Noun';
 				}
 		catch(err) {
+			console.log(selectedText.class)
 		}
     }
 }
