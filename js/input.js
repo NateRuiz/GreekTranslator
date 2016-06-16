@@ -99,6 +99,7 @@ function doSomethingWithSelectedText() {
 } catch(theError) {
   console.log(theError);
 }
+
     var selectedText = getSelectedText();
 	var greek;
 	var english;
