@@ -83,6 +83,22 @@ function getSelectedText() {
 }
 
 function doSomethingWithSelectedText() {
+  var selectedText = getSelectedText();
+  try {
+  if (selectedText) {
+    var strongNumber = selectedText.anchorNode.parentElement.id;
+    var greek = document.getElementById(strongNumber);
+    var english = strongMap[strongMap];
+    if (english != 'undefined') {
+      console.log('<p id="' +
+        " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>')
+    }
+
+    console.log(selectedText.anchorNode.parentElement.id)
+  }
+} catch(theError) {
+  console.log(theError);
+}
     var selectedText = getSelectedText();
 	var greek;
 	var english;
