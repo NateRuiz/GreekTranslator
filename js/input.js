@@ -82,6 +82,12 @@ function getSelectedText() {
   return text;
 }
 
+/*
+<li> </li>
+<li> </li>
+
+*/
+
 function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
@@ -92,12 +98,21 @@ function doSomethingWithSelectedText() {
       english = strongMap[strongNumber].brief;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
-      document.getElementById("definition").innerHTML = 'Defintion: ' + english;
-      document.getElementById("partsofspeech").innerHTML = 'Noun';
+	  var englishWords = english.split(", ");
+	   var list = document.getElementById('listOfSpeech');
+	   list.innerHTML = "";
+	  for (var el in englishWords) {
+		var word = englishWords[el];
+		var entry = document.createElement('li');
+		entry.appendChild(document.createTextNode(word));
+		list.appendChild(entry);
+	}
+	
+	document.getElementById("partsofspeech").innerHTML = 'Noun';
+	  
     } catch (err) {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
-      document.getElementById("definition").innerHTML = 'Definition not found';
-      document.getElementById("partsofspeech").innerHTML = '';
+      document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
     }
   }
 }
