@@ -95,29 +95,25 @@ function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-<<<<<<< HEAD
-  if (selectedText.focusNode.parentNode.localName=="span") {
-=======
   if (selectedText) {
     var strongNumber = selectedText.anchorNode.parentElement.id;
 	var morphology = document.getElementById(strongNumber).getAttribute("morphology");
->>>>>>> 49fd4e2175f2955bad9b4dbd590f07d2de391b0c
     try {
       english = strongMap[strongNumber].brief;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
 	  var englishWords = english.split(", ");
 	   var list = document.getElementById('listOfSpeech');
-	   list.innerHTML = "";
+	   list.innerHTML = "Definition:";
 	  for (var el in englishWords) {
 		var word = englishWords[el];
 		var entry = document.createElement('li');
 		entry.appendChild(document.createTextNode(word));
 		list.appendChild(entry);
 	}
-	
+
 	document.getElementById("partsofspeech").innerHTML = morphology;
-	  
+
     } catch (err) {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
       document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
