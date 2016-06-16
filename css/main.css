@@ -16,23 +16,20 @@
   padding-top: 15px;
 }
 
-#greekword {
+.greekword {
 	position:fixed;
-	padding-top: 82px;
 	font-size: 40px;
 }
 
 #definition {
-	position:fixed;
-	padding-top:165px;
 	font-size: 20px;
 }
 
 #partsofspeech {
-	position:fixed;
-	padding-top:142px;
 	font-size: 20px;
 }
+
+
 
 @media only screen and (max-width: 1000px) {
   .body {
