@@ -87,8 +87,8 @@ function doSomethingWithSelectedText() {
   var greek;
   var english;
   if (selectedText) {
-    var strongNumber = selectedText.anchorNode.parentElement.id;
     try {
+      var strongNumber = selectedText.anchorNode.parentElement.id;
       english = strongMap[strongNumber].brief;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';

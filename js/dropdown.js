@@ -47,9 +47,10 @@ function goButton() {
   var selected = document.getElementById("chapter-dropdown").value;
   var chosenVerse = document.getElementById("verseList").value;
   var total = 'p' + selected + ":" + chosenVerse;
-  var el = document.getElementById(total);
-  $(el).scrollTo($(".nav"), 800);
-
+  var heightOfNav = $(".nav").height();
+  console.log(heightOfNav);
+  var rect = document.getElementById(total).offsetTop;
+  scrollTo(0, rect);
 }
 
 $('#goButton').click(function() {
