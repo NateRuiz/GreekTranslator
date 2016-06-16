@@ -46,10 +46,9 @@ function verseCount() {
 function goButton() {
   var selected = document.getElementById("chapter-dropdown").value;
   var chosenVerse = document.getElementById("verseList").value;
-  var total = selected + ":" + chosenVerse;
+  var total = 'p' + selected + ":" + chosenVerse;
   var el = document.getElementById(total);
-  el.scrollIntoView(true); // allows the user to scroll up and down the
-  //screen
+  $(el).scrollTo($(".nav"),800);
 
 }
 

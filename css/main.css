@@ -4,9 +4,10 @@
   width: 100%;
   z-index: 1000;
   color: white;
+  top:0;
 }
 .body {
-  padding-top: 75px;
+  margin-top: 85px;
 }
 .btn {
   margin-top: 15px;
