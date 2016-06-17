@@ -19,8 +19,7 @@ $.ajax({
 
     bibleText = text;
     parseText(bibleText);
-    document.title = bookName[0];
-    document.getElementById('book').innerHTML = bookName[0];
+    loadBooks();
     loadChapters();
     loadVerses();
     document.onmouseup = doSomethingWithSelectedText;
@@ -35,6 +34,7 @@ $.ajax({
   success: function(text) {
     strongMapping(text);
   }
+  // retrives files of definitions from the lexicon?
 });
 var strongMap = {};
 
@@ -48,13 +48,14 @@ function strongMapping(text) {
 function parseText(text) {
   for (book in text) {
     for (chapter in text[book]) {
-      $('#bible').append('<h4> Chapter ' + chapter + '</h4>');
+      $('#bible').append('<h4 class=chapt> Chapter ' + chapter + '</h4>');
       for (verse in text[book][chapter]) {
         var currentString = text[book][chapter][verse];
         currentString = currentString.replace(/{[^>]*}/g, "");
         currentString = currentString.replace(/[A-z]+|[-]|[[]|[\]]/g, "")
         currentString = currentString.replace(/  /g, " ")
         var stringArray = currentString.split(" ");
+        var morphologyArray = morphologyArrayGen(text[book][chapter][verse]);
         for (var i = 0; i < stringArray.length; i++) {
           if (i % 2 == 0 && !isNaN(stringArray[i])) {
             stringArray.splice(i, 1);
@@ -63,12 +64,13 @@ function parseText(text) {
         }
         var finalString = "";
         for (var i = 0; i < stringArray.length; i += 2) {
-          finalString += "<span id='" + stringArray[i + 1] + "'>" + stringArray[i] + " </span>";
+          finalString += "<span id='" + stringArray[i + 1] + "' morphology='" + morphologyArray[i / 2] + "'>" + stringArray[i] + " </span>";
         }
-        $('#bible').append('<p id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+        $('#bible').append('<p class=chapt id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
     }
   }
+  goToPrevious();
 
 }
 
@@ -84,15 +86,48 @@ function getSelectedText() {
 
 function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
-  if (selectedText) {
+  var greek;
+  var english;
+  if(selectedText.anchorNode != null) {
+  if (selectedText.anchorNode.parentElement.localName == "span") {
     var strongNumber = selectedText.anchorNode.parentElement.id;
-    var greek = document.getElementById(strongNumber);
-    var english = strongMap[strongMap];
-    if (english != 'undefined') {
-      console.log('<p id="' +
-        " " + chapter + ":" + verse + '"><strong>' + greek + ' </strong>' + english + '</span></p>')
-    }
+    var morphology = document.getElementById(strongNumber).getAttribute("morphology");
+    try {
+      english = strongMap[strongNumber].long;
+      greekk = selectedText.anchorNode.nodeValue
+      document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
+      var englishWords = english.split(", ");
+      var list = document.getElementById('listOfSpeech');
+      list.innerHTML = "Definition:";
+      for (var el in englishWords) {
+        var word = englishWords[el];
+        var entry = document.createElement('li');
+        entry.appendChild(document.createTextNode(word));
+        list.appendChild(entry);
+      }
 
-    console.log(selectedText.anchorNode.parentElement.id)
+      document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+      document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/' + morphology);
+    } catch (err) {
+      document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+      document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/' + morphology);
+      document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
+      document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
+    }
   }
+}
+}
+
+function morphologyArrayGen(currentString) {
+  var input = currentString.replace(/{[^>]*}/g, "");
+  input = input.replace(/[[]|[\]]/g, "");
+  input = input.replace(/[^\u0000-\u007F]+/g, "");
+  input = input.replace(/G[\d]{0,6}/g, "");
+  var dirtyArray = input.split(" ");
+  for (var i = dirtyArray.length - 1; i >= 0; i--) {
+    if (dirtyArray[i] == "") {
+      dirtyArray.splice(i, 1);
+    }
+  }
+  return dirtyArray;
 }
