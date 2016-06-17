@@ -95,7 +95,7 @@ function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-  if (selectedText) {
+  if (selectedText.anchorNode.parentElement.localName == "span") {
     var strongNumber = selectedText.anchorNode.parentElement.id;
 	var morphology = document.getElementById(strongNumber).getAttribute("morphology");
     try {
@@ -112,8 +112,9 @@ function doSomethingWithSelectedText() {
 		list.appendChild(entry);
 	}
 
-	document.getElementById("partsofspeech").innerHTML = morphology;
-
+	document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+  document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/'+morphology);
+console.log("help");
     } catch (err) {
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
 
