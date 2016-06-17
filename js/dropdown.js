@@ -1,3 +1,21 @@
+function loadBooks() {
+  var book = document.getElementById("book");
+  var bookList = document.createElement("select");
+  bookList.id = 'book-dropdown'
+  bookList.className = "form-control";
+  book.appendChild(bookList);
+  // finds the values of the chapter and
+  // verses by their ID
+  //Create and append the options
+  for (var i = 0; i < bookName.length; i++) {
+    var option = document.createElement("option");
+    option.value = bookName[i];
+    option.text = bookName[i];
+    bookList.appendChild(option);
+    // This makes it so when the user clicks on a chapter the correct number of
+    // verses match up.
+  }
+}
 function loadChapters() {
 
   var chapter = document.getElementById("chapter");
@@ -34,7 +52,7 @@ function loadVerses(total) {
     var option = document.createElement("option");
     option.value = i;
     option.text = "Verse " + i;
-    verseList.appendChild(option);// shows the different options of the verses
+    verseList.appendChild(option); // shows the different options of the verses
 
   }
 }
@@ -53,11 +71,8 @@ function goButton() {
   var selected = document.getElementById("chapter-dropdown").value;
   var chosenVerse = document.getElementById("verseList").value;
   var total = selected + ":" + chosenVerse;
-  var heightOfNav = $(".nav").height();
-  console.log(heightOfNav);
   var rect = document.getElementById(total).offsetTop;
   scrollTo(0, rect);
-
 }
 
 $('#goButton').click(function() {

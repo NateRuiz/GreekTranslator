@@ -19,8 +19,7 @@ $.ajax({
 
     bibleText = text;
     parseText(bibleText);
-    document.title = bookName[0];
-    document.getElementById('book').innerHTML = bookName[0];
+    loadBooks();
     loadChapters();
     loadVerses();
     document.onmouseup = doSomethingWithSelectedText;
@@ -35,7 +34,7 @@ $.ajax({
   success: function(text) {
     strongMapping(text);
   }
-// retrives files of definitions from the lexicon?
+  // retrives files of definitions from the lexicon?
 });
 var strongMap = {};
 
@@ -49,7 +48,7 @@ function strongMapping(text) {
 function parseText(text) {
   for (book in text) {
     for (chapter in text[book]) {
-      $('#bible').append('<h4> Chapter ' + chapter + '</h4>');
+      $('#bible').append('<h4 class=chapt> Chapter ' + chapter + '</h4>');
       for (verse in text[book][chapter]) {
         var currentString = text[book][chapter][verse];
         currentString = currentString.replace(/{[^>]*}/g, "");
@@ -67,10 +66,11 @@ function parseText(text) {
         for (var i = 0; i < stringArray.length; i += 2) {
           finalString += "<span id='" + stringArray[i + 1] + "' morphology='" + morphologyArray[i / 2] + "'>" + stringArray[i] + " </span>";
         }
-        $('#bible').append('<p id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+        $('#bible').append('<p class=chapt id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
     }
   }
+  goToPrevious();
 
 }
 
@@ -84,51 +84,39 @@ function getSelectedText() {
   return text;
 }
 
-/*
-<li> </li>
-<li> </li>
-
-*/
-
-
 function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
+  if(selectedText.anchorNode != null) {
   if (selectedText.anchorNode.parentElement.localName == "span") {
     var strongNumber = selectedText.anchorNode.parentElement.id;
-	var morphology = document.getElementById(strongNumber).getAttribute("morphology");
+    var morphology = document.getElementById(strongNumber).getAttribute("morphology");
     try {
-      english = strongMap[strongNumber].brief;
+      english = strongMap[strongNumber].long;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
-	  var englishWords = english.split(", ");
-	   var list = document.getElementById('listOfSpeech');
-	   list.innerHTML = "Definition:";
-	  for (var el in englishWords) {
-		var word = englishWords[el];
-		var entry = document.createElement('li');
-		entry.appendChild(document.createTextNode(word));
-		list.appendChild(entry);
-	}
+      var englishWords = english.split(", ");
+      var list = document.getElementById('listOfSpeech');
+      list.innerHTML = "Definition:";
+      for (var el in englishWords) {
+        var word = englishWords[el];
+        var entry = document.createElement('li');
+        entry.appendChild(document.createTextNode(word));
+        list.appendChild(entry);
+      }
 
-	document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
-  document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/'+morphology);
-console.log("help");
+      document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+      document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/' + morphology);
     } catch (err) {
+      document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+      document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/' + morphology);
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
-
-      document.getElementById("definition").innerHTML = 'Definition not found';
-    } finally {
-      document.getElementById("partsofspeech").innerHTML = '<a href="' + morphology + '">'+ morphology + '</a>';
-
-
       document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
- ihoegen/master
     }
   }
 }
-
+}
 
 function morphologyArrayGen(currentString) {
   var input = currentString.replace(/{[^>]*}/g, "");

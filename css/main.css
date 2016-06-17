@@ -7,12 +7,12 @@
   top: 0;
 }
 .body {
-  margin-top: 85px;
+  margin-top: 65px;
 }
 .btn {
   margin-top: 15px;
 }
-#chapter, #verse {
+#chapter, #verse, #book {
   padding-top: 15px;
 }
 .greekword {
@@ -21,24 +21,32 @@
 }
 #definition, #listOfSpeech, #partsofspeech {
   font-size: 20px;
-  text-align:left;
-  
+  text-align: left;
+}
+#pos {
+  z-index: 1000;
+}
+.nav .container .row {
+  margin-bottom: 0px;
+}
+ol.capitalize {
+  text-transform: capitalize;
+  padding-left: 0px;
+}
+#bible *::selection {
+  background: #F3F315; /* WebKit/Blink Browsers */
+}
+ol li {
+  margin-left: 22px;
 }
 @media only screen and (max-width: 1000px) {
   .body {
-    padding-top: 225px;
+    padding-top: 150px;
   }
   .btn {
     margin-top: 0;
   }
-}
-
-ol.capitalize {
-	text-transform: capitalize;
-	padding-left: 0px;
-}
-
-ol li{
-	
-	margin-left: 22px;
+  .nav .container .row {
+    margin-bottom: 15px;
+  }
 }
