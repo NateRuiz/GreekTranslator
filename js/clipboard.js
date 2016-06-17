@@ -6,7 +6,6 @@ function addLink() {
   var range = selection.getRangeAt(0);
   var paragraphId = selection.anchorNode;
   var htmlString = getHTMLOfSelection();
-
   var verses = parseHTML(htmlString);
   var verseToDisplay;
   if (verses.length == 1) {

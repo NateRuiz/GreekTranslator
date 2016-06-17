@@ -48,7 +48,7 @@ function strongMapping(text) {
 function parseText(text) {
   for (book in text) {
     for (chapter in text[book]) {
-      $('#bible').append('<h4 class=chapt> Chapter ' + chapter + '</h4>');
+      $('#bible').append('<h4> Chapter ' + chapter + '</h4>');
       for (verse in text[book][chapter]) {
         var currentString = text[book][chapter][verse];
         currentString = currentString.replace(/{[^>]*}/g, "");
@@ -66,7 +66,7 @@ function parseText(text) {
         for (var i = 0; i < stringArray.length; i += 2) {
           finalString += "<span id='" + stringArray[i + 1] + "' morphology='" + morphologyArray[i / 2] + "'>" + stringArray[i] + " </span>";
         }
-        $('#bible').append('<p class=chapt id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+        $('#bible').append('<p id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
     }
   }
