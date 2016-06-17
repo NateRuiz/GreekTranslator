@@ -48,7 +48,7 @@ function strongMapping(text) {
 function parseText(text) {
   for (book in text) {
     for (chapter in text[book]) {
-      $('#bible').append('<h4> Chapter ' + chapter + '</h4>');
+      $('#bible').append('<h4 class=chapt> Chapter ' + chapter + '</h4>');
       for (verse in text[book][chapter]) {
         var currentString = text[book][chapter][verse];
         currentString = currentString.replace(/{[^>]*}/g, "");
@@ -66,10 +66,11 @@ function parseText(text) {
         for (var i = 0; i < stringArray.length; i += 2) {
           finalString += "<span id='" + stringArray[i + 1] + "' morphology='" + morphologyArray[i / 2] + "'>" + stringArray[i] + " </span>";
         }
-        $('#bible').append('<p id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
+        $('#bible').append('<p class=chapt id="' + chapter + ":" + verse + '"><strong>' + verse + ' </strong>' + finalString + '</span></p>');
       }
     }
   }
+  goToPrevious();
 
 }
 
@@ -87,7 +88,8 @@ function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-  if (selectedText.anchorNode.parentElement.localName == "span" && selectedText.anchorNode != null) {
+  if(selectedText.anchorNode != null) {
+  if (selectedText.anchorNode.parentElement.localName == "span") {
     var strongNumber = selectedText.anchorNode.parentElement.id;
     var morphology = document.getElementById(strongNumber).getAttribute("morphology");
     try {
@@ -113,6 +115,7 @@ function doSomethingWithSelectedText() {
       document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
     }
   }
+}
 }
 
 function morphologyArrayGen(currentString) {

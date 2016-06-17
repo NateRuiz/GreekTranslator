@@ -33,6 +33,9 @@ ol.capitalize {
   text-transform: capitalize;
   padding-left: 0px;
 }
+#bible *::selection {
+  background: #F3F315; /* WebKit/Blink Browsers */
+}
 ol li {
   margin-left: 22px;
 }

@@ -71,10 +71,8 @@ function goButton() {
   var selected = document.getElementById("chapter-dropdown").value;
   var chosenVerse = document.getElementById("verseList").value;
   var total = selected + ":" + chosenVerse;
-  var heightOfNav = $(".nav").height();
   var rect = document.getElementById(total).offsetTop;
   scrollTo(0, rect);
-
 }
 
 $('#goButton').click(function() {
