@@ -19,8 +19,7 @@ $.ajax({
 
     bibleText = text;
     parseText(bibleText);
-    document.title = bookName[0];
-    document.getElementById('book').innerHTML = bookName[0];
+    loadBooks();
     loadChapters();
     loadVerses();
     document.onmouseup = doSomethingWithSelectedText;
@@ -35,7 +34,7 @@ $.ajax({
   success: function(text) {
     strongMapping(text);
   }
-// retrives files of definitions from the lexicon?
+  // retrives files of definitions from the lexicon?
 });
 var strongMap = {};
 
@@ -84,44 +83,37 @@ function getSelectedText() {
   return text;
 }
 
-/*
-<li> </li>
-<li> </li>
-
-*/
-
-
 function doSomethingWithSelectedText() {
   var selectedText = getSelectedText();
   var greek;
   var english;
-  if (selectedText.anchorNode.parentElement.localName == "span") {
+  if (selectedText.anchorNode.parentElement.localName == "span" && selectedText.anchorNode != null) {
     var strongNumber = selectedText.anchorNode.parentElement.id;
-	var morphology = document.getElementById(strongNumber).getAttribute("morphology");
+    var morphology = document.getElementById(strongNumber).getAttribute("morphology");
     try {
-      english = strongMap[strongNumber].brief;
+      english = strongMap[strongNumber].long;
       greekk = selectedText.anchorNode.nodeValue
       document.getElementById("greekword").innerHTML = '<strong>' + greekk + '</strong>';
-	  var englishWords = english.split(", ");
-	   var list = document.getElementById('listOfSpeech');
-	   list.innerHTML = "Definition:";
-	  for (var el in englishWords) {
-		var word = englishWords[el];
-		var entry = document.createElement('li');
-		entry.appendChild(document.createTextNode(word));
-		list.appendChild(entry);
-	}
+      var englishWords = english.split(", ");
+      var list = document.getElementById('listOfSpeech');
+      list.innerHTML = "Definition:";
+      for (var el in englishWords) {
+        var word = englishWords[el];
+        var entry = document.createElement('li');
+        entry.appendChild(document.createTextNode(word));
+        list.appendChild(entry);
+      }
 
-	document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
-  document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/'+morphology);
-console.log("help");
+      document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+      document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/' + morphology);
     } catch (err) {
+      document.getElementById("partsofspeech").innerHTML = '<a id="pos"> ' + morphology + "</a>";
+      document.getElementById('pos').setAttribute('href', 'http://studybible.info/mac/' + morphology);
       document.getElementById("greekword").innerHTML = '<strong>' + selectedText.anchorNode.nodeValue + '</strong>';
       document.getElementById("listOfSpeech").innerHTML = 'Definition not found';
     }
   }
 }
-
 
 function morphologyArrayGen(currentString) {
   var input = currentString.replace(/{[^>]*}/g, "");
