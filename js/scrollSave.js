@@ -1,8 +1,11 @@
 function saveLocation() {
   var scroll = $(window).scrollTop();
   localStorage.setItem('lastlocation', scroll);
-  console.log(scroll);
-  console.log(localStorage.getItem('lastlocation'));
+  var lastChapter = document.getElementById("chapter-dropdown").value;
+  var lastVerse = document.getElementById("verseList").value;
+  localStorage.setItem('lastChapter', lastChapter);
+  localStorage.setItem('lastVerse', lastVerse);
+
 }
 
 window.onbeforeunload = function() {

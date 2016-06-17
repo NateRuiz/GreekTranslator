@@ -35,12 +35,16 @@ function loadChapters() {
     // verses match up.
   }
   chapterList.onchange = verseCount;
+  var lastChapter = localStorage.getItem('lastChapter');
+  $('#chapter-dropdown').val(lastChapter);
   var verse = document.getElementById("verse");
   var verseList = document.createElement("select");
-  verseList.className = "form-control"
+  verseList.className = "form-control";
   verse.appendChild(verseList);
   verseList.id = "verseList";
   verseCount();
+  var lastVerse = localStorage.getItem('lastVerse');
+  $('#verseList').val(lastVerse);
 } // this counts the number of verses and sees the change in the drop down box
 // when the user clicks on a new value
 
@@ -53,7 +57,6 @@ function loadVerses(total) {
     option.value = i;
     option.text = "Verse " + i;
     verseList.appendChild(option); // shows the different options of the verses
-
   }
 }
 function verseCount() {
